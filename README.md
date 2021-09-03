@@ -1,6 +1,6 @@
 # vscode-markdown-link-test
 1. 今開いているパスからの相対パス指定すると[そのmarkdownファイルに移動できる](A/sub.md)
-  - そのmarkdownファイルに移動できる(どの程度キャッシュが残るかは不明)
+    - そのmarkdownファイルに移動できる(どの程度キャッシュが残るかは不明)
 1. ファイルの拡張子を外すと[エラー(でも一応開く)](A/sub)
 1. パスは相対パスのみ可[絶対パスは開けない](C:\Users\repos\vscode-markdown-link-test\B\sub.md)
 1. [レベル1](A/sub.md#レベル1)
