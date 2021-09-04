@@ -1,23 +1,24 @@
 # vscode-markdown-link-test
 VSCode1.60で導入された[markdownファイルの相対パスリンク対応](https://code.visualstudio.com/updates/v1_60?WT.mc_id=devcloud-00000-cxa#_links-between-markdown-cells)の動作テスト
-1. 今開いているパスからの相対パス指定すると[そのmarkdownファイルに移動できる](SubDirectory/SubFile.md)
-    - 区切り文字
-        - GitLab/GitHub：[/](SubDirectory/SubFile.md)⇒開ける、[\\ ](SubDirectory\SubFile.md)⇒エラー
-        - VSCode：[/](SubDirectory/SubFile.md)⇒開ける、[\\ ](SubDirectory\SubFile.md)⇒開ける
-    - GitHub/GitLab：ファイルの先頭
-    - VSCode：前回閉じた時のカーソル位置で開く(どの程度キャッシュが残るかは不明)
-2. [ファイルの拡張子を外した場合](SubDirectory/SubFile)
-    - GitHub/GitLab：エラー
-    - VSCode：エラーは出るけど開ける
-3. パスは相対パスのみ可[絶対パスは開けない](C:/Users/repos/vscode-markdown-link-test/SubDirectory/SubFile.md)
-4. [レベル1](SubDirectory/SubFile.md#レベル1)
-5. [レベル2](SubDirectory/SubFile.md#レベル2)
-6. [レベル3](SubDirectory/SubFile.md#レベル3)
-7. [レベル4](SubDirectory/SubFile.md#レベル4)
-8. [レベル5](SubDirectory/SubFile.md#レベル5)
-9.  [レベル6](SubDirectory/SubFile.md#レベル6)
-10. [#を複数個入れた場合](SubDirectory/SubFile.md######レベル1)
-    - GitHub/VSCode：開ける
-    - GitLab：開くページによって開けたり開けなかったり(トップページ：エラー、ファイルページ：開ける)
-11. 複数ある場合は[最初のモノが選ばれる](SubDirectory/SubFile.md#同じ名前の項目)
-12. [日本語やEmojiが含まれるパスも可能](サブディレクトリ/😀.md#🥴)
+
+# 注意事項
+- VSCodeの結果は編集中のmdファイル内のリンクを開く(WindowsだとCtrl+クリック)を実行したときの挙動です
+    - 標準のプレビュー機能(WindowsだとCtrl+K V)や拡張機能「[Markdown Preview Enhanced](https://shd101wyy.github.io/markdown-preview-enhanced/#/)」では挙動が異なります
+        - 2021/9/4現在、どちらもまだあまり対応できていない模様です(リンクを開くとプレビューが解除される／ファイルの先頭にしか飛ばない等)
+# 動作確認結果
+
+| No.    | 概要                                                                                                | VSCode                                                                                        | GitHub                                                                       | GitLab                                                                                   |
+| ------ | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| 【1】  | 今開いているmarkdownファイルからの<br/>相対パス指定すると<br/>[指定したmarkdownファイルに移動できる](SubDirectory/SubFile.md) | 🙆‍♂️開ける | 🙆‍♂️開ける(移動先はファイルの先頭)                                              | 🙆‍♂️開ける(移動先はファイルの先頭)                                                          |
+| 【2】  | 区切り文字                                                                                          | [/](SubDirectory/SubFile.md)⇒🙆‍♂️開ける<br/>[\\ ](SubDirectory\SubFile.md)⇒🙆‍♂️開ける          | [/](SubDirectory/SubFile.md)⇒🙆‍♂️開ける<br/>[\\ ](SubDirectory\SubFile.md)⇒🙅エラー | [/](SubDirectory/SubFile.md)⇒🙆‍♂️開ける<br/>[\\ ](SubDirectory\SubFile.md)⇒🙅エラー             |
+| 【3】  | [ファイルの拡張子を外した場合](SubDirectory/SubFile)                                                | △エラーは出るけど開ける                                                                      | 🙅エラー                                                                      | 🙅エラー                                                                                  |
+| 【4】  | [絶対パス](C:/Users/repos/vscode-markdown-link-test/SubDirectory/SubFile.md)                        | 🙅エラー                                                                                       | 🙅エラー                                                                      | 🙅エラー                                                                                  |
+| 【5】  | [レベル1](SubDirectory/SubFile.md#レベル1)                                                          | 🙆‍♂️開ける                                                                                       | 🙆‍♂️開ける                                                                      | 🙆‍♂️開ける                                                                                  |
+| 【6】  | [レベル2](SubDirectory/SubFile.md#レベル2)                                                          | 🙆‍♂️開ける                                                                                       | 🙆‍♂️開ける                                                                      | 🙆‍♂️開ける                                                                                  |
+| 【7】  | [レベル3](SubDirectory/SubFile.md#レベル3)                                                          | 🙆‍♂️開ける                                                                                       | 🙆‍♂️開ける                                                                      | 🙆‍♂️開ける                                                                                  |
+| 【8】  | [レベル4](SubDirectory/SubFile.md#レベル4)                                                          | 🙆‍♂️開ける                                                                                       | 🙆‍♂️開ける                                                                      | 🙆‍♂️開ける                                                                                  |
+| 【9】  | [レベル5](SubDirectory/SubFile.md#レベル5)                                                          | 🙆‍♂️開ける                                                                                       | 🙆‍♂️開ける                                                                      | 🙆‍♂️開ける                                                                                  |
+| 【10】 | [レベル6](SubDirectory/SubFile.md#レベル6)                                                          | 🙆‍♂️開ける                                                                                       | 🙆‍♂️開ける                                                                      | 🙆‍♂️開ける                                                                                  |
+| 【11】 | [#を複数個入れた場合](SubDirectory/SubFile.md######レベル1)                                         | 🙆‍♂️開ける                                                                                       | 🙆‍♂️開ける                                                                      | 開くページによって開けたり開けなかったり<br/>(トップページ：🙅エラー<br/>ファイルページ：🙆‍♂️開ける) |
+| 【12】 | [複数ある場合](SubDirectory/SubFile.md#同じ名前の項目)<br/>(最初の項目が選ばれる)                    | 🙆‍♂️開ける                                                                                       | 🙆‍♂️開ける                                                                      | 🙆‍♂️開ける                                                                                  |
+| 【13】 | [日本語やEmojiが含まれるパス](サブディレクトリ/😀.md#🥴)                                              | 🙆‍♂️開ける                                                                                       | 🙆‍♂️開ける                                                                      | 🙆‍♂️開ける                                                                                  |
