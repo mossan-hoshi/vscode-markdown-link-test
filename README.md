@@ -4,7 +4,7 @@ VSCode1.60で導入された[markdownファイルの相対パスリンク対応]
 # 動作確認環境
 - Widows11 Pro
 - VSCode 1.60
-- 
+
 # 注意事項
 - VSCodeの結果は編集中のmdファイル内のリンクを開く(WindowsだとCtrl+クリック)を実行したときの挙動です
     - 標準のプレビュー機能(WindowsだとCtrl+K V)や拡張機能「[Markdown Preview Enhanced](https://shd101wyy.github.io/markdown-preview-enhanced/#/)」では挙動が異なります
